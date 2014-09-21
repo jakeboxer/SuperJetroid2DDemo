@@ -16,10 +16,14 @@ public class Player : MonoBehaviour {
 			if (absVelocityX < maxVelocity.x) {
 				forceX = speed;
 			}
+
+			transform.localScale = new Vector3(1, 1, 1);
 		} else if (Input.GetKey("left")) {
 			if (absVelocityX < maxVelocity.x) {
 				forceX = -speed;
 			}
+			
+			transform.localScale = new Vector3(-1, 1, 1);
 		}
 		
 		rigidbody2D.AddForce(new Vector2(forceX, forceY));
