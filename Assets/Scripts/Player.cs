@@ -31,16 +31,20 @@ public class Player : MonoBehaviour {
 		}
 
 		if (controller.moving.x == 0) {
+			// We're not moving horizontally.
 			animator.SetInteger("AnimState", 0);
 		} else {
+			// We're moving horizontally.
 			if (absVelocityX < maxVelocity.x) {
+				// We haven't yet reached the horizontal speed limit.
 				forceX = speed * controller.moving.x;
 
-				// Less horizontal force when the player in the air.
 				if (!standing) {
+					// We're moving horizontally while in the air, slow down.
 					forceX *= airSpeedMultiplier;
 				}
 
+				// Face in the direction we're moving horizontally.
 				transform.localScale = new Vector3(forceX > 0 ? 1 : -1, 1, 1);
 			}
 
@@ -48,11 +52,15 @@ public class Player : MonoBehaviour {
 		}
 
 		if (controller.moving.y > 0) {
+			// We're using the jetpack.
 			if (absVelocityY < maxVelocity.y) {
 				forceY = jetSpeed * controller.moving.y;
 			}
 
 			animator.SetInteger("AnimState", 2);
+		} else if (absVelocityY > 0) {
+			// We're not using the jetpack but we are in the air (probably falling).
+			animator.SetInteger("AnimState", 3);
 		}
 		
 		rigidbody2D.AddForce(new Vector2(forceX, forceY));
