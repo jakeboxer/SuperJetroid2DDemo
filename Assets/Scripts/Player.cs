@@ -7,6 +7,12 @@ public class Player : MonoBehaviour {
 	public bool standing;
 	public float jetSpeed = 15f;
 	public float airSpeedMultiplier = 0.3f;
+
+	private PlayerController controller;
+
+	void Start () {
+		controller = GetComponent<PlayerController>();
+	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -21,24 +27,23 @@ public class Player : MonoBehaviour {
 		} else {
 			standing = false;
 		}
-		
-		if (Input.GetKey("right")) {
-			if (absVelocityX < maxVelocity.x) {
-				forceX = standing ? speed : (speed * airSpeedMultiplier);
-			}
 
-			transform.localScale = new Vector3(1, 1, 1);
-		} else if (Input.GetKey("left")) {
+		if (controller.moving.x != 0) {
 			if (absVelocityX < maxVelocity.x) {
-				forceX = standing ? -speed : (-speed * airSpeedMultiplier);
+				forceX = speed * controller.moving.x;
+
+				// Less horizontal force when the player in the air.
+				if (!standing) {
+					forceX *= airSpeedMultiplier;
+				}
+
+				transform.localScale = new Vector3(forceX > 0 ? 1 : -1, 1, 1);
 			}
-			
-			transform.localScale = new Vector3(-1, 1, 1);
 		}
 
-		if (Input.GetKey("up")) {
+		if (controller.moving.y > 0) {
 			if (absVelocityY < maxVelocity.y) {
-				forceY = jetSpeed;
+				forceY = jetSpeed * controller.moving.y;
 			}
 		}
 		
