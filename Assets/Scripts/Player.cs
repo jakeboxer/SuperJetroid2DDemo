@@ -9,9 +9,9 @@ public class Player : MonoBehaviour {
 	void Update () {
 		var forceX = 0f;
 		var forceY = 0f;
-
+		
 		var absVelocityX = Mathf.Abs(rigidbody2D.velocity.x);
-
+		
 		if (Input.GetKey("right")) {
 			if (absVelocityX < maxVelocity.x) {
 				forceX = speed;
@@ -21,7 +21,7 @@ public class Player : MonoBehaviour {
 				forceX = -speed;
 			}
 		}
-
+		
 		rigidbody2D.AddForce(new Vector2(forceX, forceY));
 	}
 }
