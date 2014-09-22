@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class LookForward : MonoBehaviour {
+	public bool needsCollision = true;
 	public Transform sightStart, sightEnd;
 
 	private bool collision = false;
@@ -16,8 +17,10 @@ public class LookForward : MonoBehaviour {
 		collision = Physics2D.Linecast(sightStart.position, sightEnd.position, 1 << LayerMask.NameToLayer("Solid"));
 		Debug.DrawLine(sightStart.position, sightEnd.position, Color.green);
 
-		if (collision) {
-			transform.localScale = new Vector3((transform.localScale.x == 1) ? -1 : 1, 1, 1);
+		if (collision == needsCollision) {
+			this.transform.localScale = new Vector3((transform.localScale.x == 1) ? -1 : 1, 1, 1);
 		}
+
+		Debug.Log("needsCollision: " + needsCollision);
 	}
 }
