@@ -3,6 +3,7 @@ using System.Collections;
 
 public class DoorTrigger : MonoBehaviour {
 	public Door door;
+	public bool ignoreTrigger;
 
 	// Use this for initialization
 	void Start () {
@@ -15,12 +16,16 @@ public class DoorTrigger : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D (Collider2D target) {
+		if (ignoreTrigger) { return; }
+
 		if (target.gameObject.tag == "Player") {
 			door.Open();
 		}
 	}
 	
 	void OnTriggerExit2D (Collider2D target) {
+		if (ignoreTrigger) { return; }
+
 		if (target.gameObject.tag == "Player") {
 			door.Close();
 		}
