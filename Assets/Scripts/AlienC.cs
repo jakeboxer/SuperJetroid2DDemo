@@ -3,6 +3,7 @@ using System.Collections;
 
 public class AlienC : MonoBehaviour {
 	public float attackDelay = 3f;
+	public Projectile projectile;
 
 	private Animator animator;
 
@@ -28,5 +29,11 @@ public class AlienC : MonoBehaviour {
 
 	void Fire () {
 		animator.SetInteger("AnimState", 1);
+	}
+
+	void OnShoot () {
+		if (projectile) {
+			Projectile clone = Instantiate(projectile, transform.position, Quaternion.identity) as Projectile ;
+		}
 	}
 }
