@@ -20,6 +20,12 @@ public class Explode : MonoBehaviour {
 			OnExplode();
 		}
 	}
+	
+	void OnCollisionEnter2D (Collision2D target) {
+		if (target.gameObject.tag == "Deadly") {
+			OnExplode();
+		}
+	}
 
 	void OnExplode () {
 		Destroy(gameObject);
