@@ -26,7 +26,7 @@ public class DoorTrigger : MonoBehaviour {
 		}
 	}
 
-	public void toggle (bool value) {
+	public void Toggle (bool value) {
 		if (value) {
 			door.Open();
 		} else {
