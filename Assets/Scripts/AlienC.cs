@@ -33,7 +33,7 @@ public class AlienC : MonoBehaviour {
 
 	void OnShoot () {
 		if (projectile) {
-			Projectile clone = Instantiate(projectile, transform.position, Quaternion.identity) as Projectile ;
+			Projectile clone = Instantiate(projectile, transform.position, Quaternion.identity) as Projectile;
 		}
 	}
 }
