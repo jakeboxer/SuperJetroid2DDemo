@@ -31,6 +31,15 @@ public class DoorTrigger : MonoBehaviour {
 		}
 	}
 
+	void OnDrawGizmos () {
+		Gizmos.color = ignoreTrigger ? Color.gray : Color.green;
+
+		var collider = GetComponent<BoxCollider2D>();
+		var colliderPosition = collider.transform.position;
+		var newPosition = new Vector2(colliderPosition.x + collider.center.x, colliderPosition.y + collider.center.y);
+		Gizmos.DrawWireCube(newPosition, new Vector2(collider.size.x, collider.size.y));
+	}
+
 	public void Toggle (bool value) {
 		if (value) {
 			door.Open();
