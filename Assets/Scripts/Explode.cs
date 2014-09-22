@@ -2,6 +2,8 @@
 using System.Collections;
 
 public class Explode : MonoBehaviour {
+	public BodyPart bodyPart;
+	public int totalParts = 5;
 
 	// Use this for initialization
 	void Start () {
@@ -21,5 +23,14 @@ public class Explode : MonoBehaviour {
 
 	void OnExplode () {
 		Destroy(gameObject);
+
+		var t = transform;
+
+		for (int i = 0; i < totalParts; i++) {
+			t.TransformPoint(0, -100, 0);
+			BodyPart clone = Instantiate(bodyPart, t.position, Quaternion.identity) as BodyPart;
+			clone.rigidbody2D.AddForce(Vector3.right * Random.Range(-50, 50));
+			clone.rigidbody2D.AddForce(Vector3.up * Random.Range(100, 400));
+		}
 	}
 }
