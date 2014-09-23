@@ -2,6 +2,8 @@
 using System.Collections;
 
 public class AlienB : MonoBehaviour {
+	public AudioClip attackSound;
+
 	private Animator animator;
 
 	// Use this for initialization
@@ -16,5 +18,9 @@ public class AlienB : MonoBehaviour {
 
 	void OnTriggerEnter2D (Collider2D target) {
 		animator.SetInteger("AnimState", 1);
+
+		if (attackSound) {
+			AudioSource.PlayClipAtPoint(attackSound, transform.position);
+		}
 	}
 }

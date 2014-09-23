@@ -3,6 +3,7 @@ using System.Collections;
 
 public class AlienC : MonoBehaviour {
 	public float attackDelay = 3f;
+	public AudioClip attackSound;
 	public Projectile projectile;
 
 	private Animator animator;
@@ -29,6 +30,10 @@ public class AlienC : MonoBehaviour {
 
 	void Fire () {
 		animator.SetInteger("AnimState", 1);
+
+		if (attackSound) {
+			AudioSource.PlayClipAtPoint(attackSound, transform.position);
+		}
 	}
 
 	void OnShoot () {
