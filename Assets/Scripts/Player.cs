@@ -10,6 +10,7 @@ public class Player : MonoBehaviour {
 	public AudioClip leftFootSound;
 	public AudioClip rightFootSound;
 	public AudioClip thudSound;
+	public AudioClip rocketSound;
 
 	private Animator animator;
 	private PlayerController controller;
@@ -54,8 +55,10 @@ public class Player : MonoBehaviour {
 			animator.SetInteger("AnimState", 1);
 		}
 
-		if (controller.moving.y > 0) {
+		if (controller.moving.y > 0) { 
 			// We're using the jetpack.
+			PlayRocketSound();
+
 			if (absVelocityY < maxVelocity.y) {
 				forceY = jetSpeed * controller.moving.y;
 			}
@@ -92,5 +95,17 @@ public class Player : MonoBehaviour {
 		if (rightFootSound) {
 			AudioSource.PlayClipAtPoint(rightFootSound, transform.position);
 		}
+	}
+	
+	void PlayRocketSound () {
+		if (!rocketSound || GameObject.Find("RocketSound")) { return; }
+
+		GameObject rocketSoundGameObj = new GameObject("RocketSound");
+		AudioSource aSrc = rocketSoundGameObj.AddComponent<AudioSource>();
+		aSrc.clip = rocketSound;
+		aSrc.volume = 0.7f;
+		aSrc.Play();
+
+		Destroy(rocketSoundGameObj, rocketSound.length);
 	}
 }
