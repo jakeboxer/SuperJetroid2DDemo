@@ -7,6 +7,9 @@ public class Player : MonoBehaviour {
 	public bool standing;
 	public float jetSpeed = 15f;
 	public float airSpeedMultiplier = 0.3f;
+	public AudioClip leftFootSound;
+	public AudioClip rightFootSound;
+	public AudioClip thudSound;
 
 	private Animator animator;
 	private PlayerController controller;
@@ -64,5 +67,30 @@ public class Player : MonoBehaviour {
 		}
 		
 		rigidbody2D.AddForce(new Vector2(forceX, forceY));
+	}
+
+	void OnCollisionEnter2D (Collision2D target) {
+		if (!standing) {
+			var absVelocityX = Mathf.Abs(rigidbody2D.velocity.x);
+			var absVelocityY = Mathf.Abs(rigidbody2D.velocity.y);
+			
+			if (absVelocityX <= 0.1f || absVelocityY <= 0.1f) {
+				if (thudSound) {
+					AudioSource.PlayClipAtPoint(thudSound, transform.position);
+				}
+			}
+		}
+	}
+
+	void PlayLeftFootSound () {
+		if (leftFootSound) {
+			AudioSource.PlayClipAtPoint(leftFootSound, transform.position);
+		}
+	}
+	
+	void PlayRightFootSound () {
+		if (rightFootSound) {
+			AudioSource.PlayClipAtPoint(rightFootSound, transform.position);
+		}
 	}
 }
