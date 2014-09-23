@@ -6,6 +6,11 @@ public class CameraFollow : MonoBehaviour {
 
 	private Transform _t;
 
+	void Awake () {
+		// 100f represents pixel ratio (all our pixel art is 100px to 1 unit in Unity).
+		camera.orthographicSize = ((Screen.height / 2.0f) / 100f);
+	}
+
 	// Use this for initialization
 	void Start () {
 		_t = target.transform;
