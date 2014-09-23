@@ -22,7 +22,6 @@ public class Explode : MonoBehaviour {
 	}
 	
 	void OnCollisionEnter2D (Collision2D target) {
-		Debug.Log("tag: " + target.gameObject.tag);
 		if (target.gameObject.tag == "Deadly") {
 			OnExplode();
 		}
