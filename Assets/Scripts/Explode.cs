@@ -42,5 +42,6 @@ public class Explode : MonoBehaviour {
 		GameObject clickToContinueObj = new GameObject("ClickToContinue");
 		ClickToContinue script = clickToContinueObj.AddComponent<ClickToContinue>();
 		script.sceneName = Application.loadedLevelName;
+		clickToContinueObj.AddComponent<DisplayRestartText>();
 	}
 }
