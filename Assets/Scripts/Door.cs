@@ -59,4 +59,10 @@ public class Door : MonoBehaviour {
 		yield return new WaitForSeconds(closeDelay);
 		animator.SetInteger("AnimState", 2);
 	}
+
+	public int State {
+		get {
+			return state;
+		}
+	}
 }
