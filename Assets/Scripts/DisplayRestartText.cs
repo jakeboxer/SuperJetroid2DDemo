@@ -18,6 +18,8 @@ public class DisplayRestartText : MonoBehaviour {
 		var x = (Screen.width - texture.width) / 2;
 		var y = Screen.height - 50;
 
-		GUI.DrawTexture(new Rect(x, y, texture.width, texture.height), texture);
+		if (Time.time % 2 > 1) {
+			GUI.DrawTexture(new Rect(x, y, texture.width, texture.height), texture);
+		}
 	}
 }
