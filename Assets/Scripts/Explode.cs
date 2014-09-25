@@ -38,5 +38,9 @@ public class Explode : MonoBehaviour {
 			clone.rigidbody2D.AddForce(Vector3.right * Random.Range(-50, 50));
 			clone.rigidbody2D.AddForce(Vector3.up * Random.Range(100, 400));
 		}
+
+		GameObject clickToContinueObj = new GameObject("ClickToContinue");
+		ClickToContinue script = clickToContinueObj.AddComponent<ClickToContinue>();
+		script.sceneName = Application.loadedLevelName;
 	}
 }
