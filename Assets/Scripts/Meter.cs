@@ -52,4 +52,8 @@ public class Meter : MonoBehaviour {
 			script.OnExplode();
 		}
 	}
+
+	public void AddAir(float airAmount) {
+		air = Mathf.Min(air + airAmount, maxAir);
+	}
 }

@@ -20,6 +20,12 @@ public class Collectable : MonoBehaviour {
 				AudioSource.PlayClipAtPoint(pickupSound, transform.position);
 			}
 
+			Boost[] boosts = gameObject.GetComponents<Boost>();
+
+			foreach (Boost boost in boosts) {
+				boost.OnBoost();
+			}
+
 			Destroy(gameObject);
 		}
 	}
