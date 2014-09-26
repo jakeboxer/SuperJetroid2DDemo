@@ -34,6 +34,11 @@ public class Meter : MonoBehaviour {
 		var bgHeight = background.height;
 
 		GUI.DrawTexture(new Rect(x, y, bgWidth, bgHeight), background);
+
+		var fgWidth = ((bgWidth - iconWidth) * percent) + iconWidth;
+		GUI.BeginGroup(new Rect(x, y, fgWidth, bgHeight));
+		GUI.DrawTexture(new Rect(0, 0, bgWidth, bgHeight), foreground);
+		GUI.EndGroup();
 	}
 	
 	// Update is called once per frame
