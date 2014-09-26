@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class AirBoost : Boost {
-	public float airAmount = 4f;
+	public float airAmount = 8f;
 
 	private Meter airMeter; 
 
