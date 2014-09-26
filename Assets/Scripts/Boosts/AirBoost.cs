@@ -3,11 +3,12 @@ using System.Collections;
 
 public class AirBoost : Boost {
 	public float airAmount = 4f;
-	public Meter airMeter; 
+
+	private Meter airMeter; 
 
 	// Use this for initialization
 	void Start () {
-
+		airMeter = GameObject.Find("Meter").GetComponent<Meter>();
 	}
 	
 	// Update is called once per frame
