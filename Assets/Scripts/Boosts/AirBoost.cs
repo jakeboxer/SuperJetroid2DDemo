@@ -8,7 +8,11 @@ public class AirBoost : Boost {
 
 	// Use this for initialization
 	void Start () {
-		airMeter = GameObject.Find("Meter").GetComponent<Meter>();
+		GameObject airMeterGameObject = GameObject.Find("Meter");
+
+		if (airMeterGameObject) {
+			airMeter = airMeterGameObject.GetComponent<Meter>();
+		}
 	}
 	
 	// Update is called once per frame
@@ -17,6 +21,8 @@ public class AirBoost : Boost {
 	}
 
 	public override void OnBoost () {
+		if (!airMeter) { return; }
+
 		airMeter.AddAir(airAmount);
 	}
 }
