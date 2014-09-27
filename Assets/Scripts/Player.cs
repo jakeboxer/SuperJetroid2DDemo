@@ -84,6 +84,20 @@ public class Player : MonoBehaviour {
 			}
 		}
 	}
+	
+	public void StartSpeedBoost (float factor, float duration) {
+		speed *= factor;
+		maxVelocity *= factor;
+
+		StartCoroutine(EndSpeedBoost(factor, duration));
+	}
+
+	public IEnumerator EndSpeedBoost (float factor, float duration) {
+		yield return new WaitForSeconds(Mathf.Max(0f, duration));
+		
+		speed /= factor;
+		maxVelocity /= factor;
+	}
 
 	void PlayLeftFootSound () {
 		if (leftFootSound) {
