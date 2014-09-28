@@ -14,10 +14,12 @@ public class Player : MonoBehaviour {
 
 	private Animator animator;
 	private PlayerController controller;
+	private ParticleSystem childParticleSystem;
 
 	void Start () {
 		animator = GetComponent<Animator>();
 		controller = GetComponent<PlayerController>();
+		childParticleSystem = GetComponentInChildren<ParticleSystem>();
 	}
 	
 	// Update is called once per frame
@@ -88,6 +90,8 @@ public class Player : MonoBehaviour {
 	public void StartSpeedBoost (float factor, float duration) {
 		speed *= factor;
 		maxVelocity *= factor;
+		
+		childParticleSystem.Play();
 
 		StartCoroutine(EndSpeedBoost(factor, duration));
 	}
@@ -97,6 +101,8 @@ public class Player : MonoBehaviour {
 		
 		speed /= factor;
 		maxVelocity /= factor;
+		
+		childParticleSystem.Stop();
 	}
 
 	void PlayLeftFootSound () {
