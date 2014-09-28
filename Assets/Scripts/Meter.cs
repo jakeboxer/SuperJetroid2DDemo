@@ -2,8 +2,8 @@
 using System.Collections;
 
 public class Meter : MonoBehaviour {
-	public float air = 40f;
-	public float maxAir = 40f;
+	public float air = 30f;
+	public float maxAir = 30f;
 	public float airBurnRate = 1f;
 	public Texture2D bgTexture;
 	public Texture2D airBarTexture;

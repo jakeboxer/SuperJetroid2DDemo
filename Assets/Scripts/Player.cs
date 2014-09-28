@@ -14,10 +14,12 @@ public class Player : MonoBehaviour {
 
 	private Animator animator;
 	private PlayerController controller;
+	private ParticleSystem childParticleSystem;
 
 	void Start () {
 		animator = GetComponent<Animator>();
 		controller = GetComponent<PlayerController>();
+		childParticleSystem = GetComponentInChildren<ParticleSystem>();
 	}
 	
 	// Update is called once per frame
@@ -83,6 +85,24 @@ public class Player : MonoBehaviour {
 				}
 			}
 		}
+	}
+	
+	public void StartSpeedBoost (float factor, float duration) {
+		speed *= factor;
+		maxVelocity *= factor;
+		
+		childParticleSystem.Play();
+
+		StartCoroutine(EndSpeedBoost(factor, duration));
+	}
+
+	public IEnumerator EndSpeedBoost (float factor, float duration) {
+		yield return new WaitForSeconds(Mathf.Max(0f, duration));
+		
+		speed /= factor;
+		maxVelocity /= factor;
+		
+		childParticleSystem.Stop();
 	}
 
 	void PlayLeftFootSound () {
